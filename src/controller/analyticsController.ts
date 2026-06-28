@@ -62,7 +62,7 @@ export const missingSubmissions = async (
     next: NextFunction
 ) => {
     try {
-        const assignmentId = Number(req.params.assignment_id);
+        const assignmentId = Number(req.params.id);
         
         if (!Number.isInteger(assignmentId) || assignmentId <= 0) {
             const error = new Error(`assignment id must be a positive integer`) as statusError;
@@ -119,7 +119,7 @@ export const overdue = async (
                         ELSE 'pending'
                     END AS status
              FROM assignments a
-             JOIN course c
+             JOIN courses c
              ON c.id = a.course_id
              JOIN enrollments e
              ON e.course_id = c.id

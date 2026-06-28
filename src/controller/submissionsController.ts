@@ -164,7 +164,7 @@ export const gradeSubmission = async (
     next: NextFunction
 ) => {
     try {
-        const submissionId = Number(req.params.submission_id);
+        const submissionId = Number(req.params.id);
 
         if (!Number.isInteger(submissionId) || submissionId <= 0) {
             const error = new Error(`submission id must be a positive integer`) as statusError;
