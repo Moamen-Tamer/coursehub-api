@@ -1,0 +1,8 @@
+CREATE TABLE assignments (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    tenant_id INT REFERENCES tenants(id) ON DELETE CASCADE,
+    course_id INT REFERENCES courses(id) ON DELETE CASCADE,
+    title VARCHAR(200) NOT NULL,
+    due_date TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW()
+);
