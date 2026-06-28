@@ -59,12 +59,13 @@ coursehub-api/
 ## Database Schema
 
 ```
-tenants ─────────────────────────────────────────┐
-   └── users (tenant_id FK)                       │
-   └── courses (tenant_id FK, instructor_id FK)   │
-       └── assignments (tenant_id FK, course_id)  │
-           └── submissions (assignment_id, student_id)
-   └── enrollments (tenant_id FK, student_id, course_id)
+┌─tenants ─────────────────────────────────────────────────┐
+│    └── users (tenant_id FK)                              │
+│    └── courses (tenant_id FK, instructor_id FK)          │
+│        └── assignments (tenant_id FK, course_id)         │
+│            └── submissions (assignment_id, student_id)   │
+│    └── enrollments (tenant_id FK, student_id, course_id) │
+└──────────────────────────────────────────────────────────┘
 ```
 
 RLS policies on all five tables filter by `current_setting('app.tenant_id')::int`, which is set per-transaction in `setTenantContext`.
